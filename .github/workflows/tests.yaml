@@ -6,8 +6,19 @@ name: Tests (pytest)
 # The trailing colon is intentional!
 on:
   push:
+   # Only check when Python files are changed.
+   # Don't need to check when the README is updated!
+   paths:
+     - '**.py'
+     - 'pyproject.toml'
   pull_request:
-
+    paths:
+      - '**.py'
+      - 'pyproject.toml'
+    # Only check when somebody raises a pull_request to main.
+    branches: [main]
+  # This allows you to run the tests manually if you choose
+  workflow_dispatch:
 
 # This is a list of jobs that the action will run. In this case, we have only
 # one job called build.
