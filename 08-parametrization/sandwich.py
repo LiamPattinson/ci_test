@@ -1,4 +1,4 @@
 def sandwich():
     bread = "======"
-    filling = "jam"
+    filling = "cheese"
     return "\n".join([bread, filling, bread])
