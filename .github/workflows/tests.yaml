@@ -20,7 +20,9 @@ jobs:
         os: ["ubuntu-latest", "windows-latest"]
         exclude:
           - os: "windows-latest"
-            python_version: ["3.12", "3.13"]
+            python_version: "3.12"
+          - os: "windows-latest"
+            python_version: "3.13"
 
     # This is the environment that the job will run on. In this case, we are
     # using the latest version of Ubuntu, however you can use other operating
