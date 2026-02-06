@@ -6,6 +6,7 @@ name: Tests (pytest)
 # The trailing colon is intentional!
 on:
   push:
+  pull_request:
 
 # This is a list of jobs that the action will run. In this case, we have only
 # one job called build.
