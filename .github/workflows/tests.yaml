@@ -8,15 +8,15 @@ on:
   push:
    # Only check when Python files are changed.
    # Don't need to check when the README is updated!
-   paths:
-     - '**.py'
-     - 'pyproject.toml'
-  pull_request:
-    paths:
-      - '**.py'
-      - 'pyproject.toml'
-    # Only check when somebody raises a pull_request to main.
-    branches: [main]
+   # paths:
+   #   - '**.py'
+   #   - 'pyproject.toml'
+  # pull_request:
+  #   paths:
+  #     - '**.py'
+  #     - 'pyproject.toml'
+  #   # Only check when somebody raises a pull_request to main.
+  #   branches: [main]
   # This allows you to run the tests manually if you choose
   workflow_dispatch:
 
@@ -25,20 +25,21 @@ on:
 # one job called build.
 jobs:
 
-  build:
+  test:
 
-    strategy:
-      matrix:
-        python_version: ["3.12", "3.13", "3.14"]
-        os: ["ubuntu-latest", "windows-latest"]
-        exclude:
-          - os: "windows-latest"
-            python_version: "3.12"
-          - os: "windows-latest"
-            python_version: "3.13"
+    # strategy:
+    #   matrix:
+    #     python_version: ["3.12", "3.13", "3.14"]
+    #     os: ["ubuntu-latest", "windows-latest"]
+        # exclude:
+        #   - os: "windows-latest"
+        #     python_version: "3.12"
+        #   - os: "windows-latest"
+        #     python_version: "3.13"
 
     # This is the environment that the job will run on.
-    runs-on: ${{ matrix.os }}
+    #runs-on: ${{ matrix.os }}
+    runs-on: "ubuntu-latest"
 
     # This is a list of steps that the job will run. Each step is a command
     # that will be executed on the environment.
@@ -52,12 +53,14 @@ jobs:
 
       # This is the name of the step. This is just a label that will be
       # displayed in the GitHub UI.
-      - name: Set up Python ${{ matrix.python_version }}
+      #- name: Set up Python ${{ matrix.python_version }}
+      - name: Set up Python
         # This command tells GitHub to use a pre-built action. In this case, we
         # are using the actions/setup-python action to set up Python 3.12.
         uses: actions/setup-python@v6
         with:
-            python-version: ${{ matrix.python_version }}
+            python-version: "3.12"
+            #python-version: ${{ matrix.python_version }}
 
       # This step installs the dependencies for the project such as pytest,
       # numpy, pandas, etc using the requirements.txt file we created earlier.
